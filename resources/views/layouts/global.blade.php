@@ -68,7 +68,9 @@
                             <a href="/home"><span class="oi oi-home"></span> Home</a>
                         </li>
                         <li>
-                            <a href="/users"><span class="oi oi-home"></span> User</a>
+                            <a href="{{route('users.index')}}">
+                                <span class="oi oi-people"></span> Manage Users
+                            </a>
                         </li>
                         <div class="d-block d-md-none">
                             <div class="dropdown-divider"></div>
