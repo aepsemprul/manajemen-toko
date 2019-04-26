@@ -112,10 +112,12 @@ class UserController extends Controller
         $user->address = $request->get('address');
         $user->phone = $request->get('phone');
 
-        if($user->avatar && file_exists(storage_path('app/public/' . $user->avatar))){
-            \Storage::delete('public/'.$user->avatar);
-            $file = $request->file('avatar')->storeAs('avatars', 'public');
-            $user->avatar = $file;
+        if($request->file('avatar')){
+            if($user->avatar && file_exists(storage_path('app/public/' . $user->avatar))){
+                \Storage::delete('public/' . $user->name);
+            }
+            $new_avatar = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $new_avatar;
         }
         
         $user->save();
