@@ -67,6 +67,9 @@
                         <li>
                             <a href="/home"><span class="oi oi-home"></span> Home</a>
                         </li>
+                        <li>
+                            <a href="/users"><span class="oi oi-home"></span> User</a>
+                        </li>
                         <div class="d-block d-md-none">
                             <div class="dropdown-divider"></div>
                             <li><a href="#"> Profile</a></li>
