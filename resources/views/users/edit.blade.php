@@ -20,12 +20,15 @@
             name="_method">
         <label for="name">Name</label>
         <input
-            value="{{$user->name}}"
+            value="{{old('name') ? old('name') : $user->name}}" class="form-control {{$errors->first('name') ? "is-invalid" : ""}}"
             class="form-control"
             placeholder="Full Name"
             type="text"
             name="name"
             id="name"/>
+        <div class="invalid-feedback">
+            {{$errors->first('name')}}
+        </div>
         <br>
         <label for="username">Username</label>
         <input
@@ -57,26 +60,29 @@
         <label for="">Roles</label>
         <br>
         <input
-            type="checkbox" {{in_array("ADMIN", json_decode($user->roles)) ?
-            "checked" : ""}}
+            type="checkbox" {{in_array("ADMIN", json_decode($user->roles)) ? "checked" : ""}}
             name="roles[]"
+            class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}"
             id="ADMIN"
             value="ADMIN">
         <label for="ADMIN">Administrator</label>
         <input
-            type="checkbox" {{in_array("STAFF", json_decode($user->roles)) ?
-            "checked" : ""}}
+            type="checkbox" {{in_array("STAFF", json_decode($user->roles)) ? "checked" : ""}}
             name="roles[]"
+            class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}"
             id="STAFF"
             value="STAFF">
         <label for="STAFF">Staff</label>
         <input
-            type="checkbox" {{in_array("CUSTOMER", json_decode($user->roles)) ?
-            "checked" : ""}}
+            type="checkbox" {{in_array("CUSTOMER", json_decode($user->roles)) ? "checked" : ""}}
             name="roles[]"
+            class="form-control {{$errors->first('roles') ? "is-invalid" : "" }}"
             id="CUSTOMER"
             value="CUSTOMER">
         <label for="CUSTOMER">Customer</label>
+        <div class="invalid-feedback">
+            {{$errors->first('roles')}}
+        </div>
         <br>
         <br>
         <label for="phone">Phone number</label>
@@ -84,14 +90,15 @@
         <input
             type="text"
             name="phone"
-            class="form-control"
+            class="form-control {{$errors->first('phone') ? "is-invalid" : ""}}"
             value="{{$user->phone}}">
         <br>
         <label for="address">Address</label>
         <textarea
             name="address"
             id="address"
-            class="form-control">{{$user->address}}
+            class="form-control {{$errors->first('address') ? "is-invalid" : ""}}">
+                {{old('address') ? old('address') : $user->address}}
         </textarea>
         <br>
         <label for="avatar">Avatar image</label>
@@ -119,7 +126,7 @@
         <input
             value="{{$user->email}}"
             disabled
-            class="form-control"
+            class="form-control {{$errors->first('email') ? "is-invalid" : ""}} "
             placeholder="user@mail.com"
             type="text"
             name="email"

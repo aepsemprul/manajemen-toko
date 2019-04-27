@@ -54,6 +54,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        \Validator::make($request->all(),[
+            "name" => "required|min:5|max:100",
+            "username" => "required|min:5|max:20",
+            "roles" => "required",
+            "phone" => "required|digits_between:10,12",
+            "address" => "required|min:20|max:200",
+            "avatar" => "required",
+            "email" => "required|email",
+            "password" => "required",
+            "password_confirmation" => "required|same:password"
+        ])->validate();
+
         $new_user = new \App\User;
         $new_user->name = $request->get('name');
         $new_user->username = $request->get('username');
@@ -106,6 +118,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        \Validator::make($request->all(), [
+            "name" => "required|min:5|max:100",
+            "roles" => "required",
+            "phone" => "required|digits_between:10,12",
+            "address" => "required|min:20|max:200",
+        ])->validate();
+        
         $user = \App\User::findOrFail($id);
         $user->name = $request->get('name');
         $user->roles = json_encode($request->get('roles'));
